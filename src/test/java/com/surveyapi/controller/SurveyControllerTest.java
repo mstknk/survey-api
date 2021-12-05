@@ -28,7 +28,7 @@ class SurveyControllerTest {
 
 	@Test
 	@DisplayName("Successful response with valid survey request")
-	public void testThatRequestWithValidSurveyPayloadJson() throws Exception {
+	void testThatRequestWithValidSurveyPayloadJson() throws Exception {
 		String surveyJson = "{\"name\": \"mesut\", \"skinCondition\" : 1, \"sleepLastNight\" : 1}";
 		mockMvc.perform(MockMvcRequestBuilders.post("/survey/save")
 				.content(surveyJson)
@@ -38,7 +38,7 @@ class SurveyControllerTest {
 
 	@Test
 	@DisplayName("Validation response: Name is mandatory")
-	public void testThatValidationMessageRequestWithEmptyNameField() throws Exception {
+	void testThatValidationMessageRequestWithEmptyNameField() throws Exception {
 		String surveyJson = "{\"name\": \"\", \"skinCondition\" : 1, \"sleepLastNight\" : 1}";
 		mockMvc.perform(MockMvcRequestBuilders.post("/survey/save")
 				.content(surveyJson)
@@ -50,7 +50,7 @@ class SurveyControllerTest {
 
 	@Test
 	@DisplayName("Validation response: Name is mandatory")
-	public void testThatValidationMessageRequestWithOutNameField() throws Exception {
+	void testThatValidationMessageRequestWithOutNameField() throws Exception {
 		String surveyJson = "{ \"skinCondition\" : 1, \"sleepLastNight\" : 1}";
 		mockMvc.perform(MockMvcRequestBuilders.post("/survey/save")
 				.content(surveyJson)
@@ -62,7 +62,7 @@ class SurveyControllerTest {
 
 	@Test
 	@DisplayName("Validation response: must be less than or equal to 10")
-	public void testThatValidationMessageRequestWithSkinConditionExceedMax() throws Exception {
+	void testThatValidationMessageRequestWithSkinConditionExceedMax() throws Exception {
 		String surveyJson = "{\"name\": \"mesut\", \"skinCondition\" : 20, \"sleepLastNight\" : 1}";
 		mockMvc.perform(MockMvcRequestBuilders.post("/survey/save")
 				.content(surveyJson)
@@ -74,7 +74,7 @@ class SurveyControllerTest {
 
 	@Test
 	@DisplayName("Validation response: must be less than or equal to 10")
-	public void testThatValidationMessageRequestWithSleepLastNightExceedMax() throws Exception {
+	void testThatValidationMessageRequestWithSleepLastNightExceedMax() throws Exception {
 		String surveyJson = "{\"name\": \"mesut\", \"skinCondition\" : 1, \"sleepLastNight\" : 12}";
 		mockMvc.perform(MockMvcRequestBuilders.post("/survey/save")
 				.content(surveyJson)
@@ -86,7 +86,7 @@ class SurveyControllerTest {
 
 	@Test
 	@DisplayName("Validation response: must be greater than or equal to 0")
-	public void testThatValidationMessageRequestWithSleepLastNightExceedMin() throws Exception {
+	void testThatValidationMessageRequestWithSleepLastNightExceedMin() throws Exception {
 		String surveyJson = "{\"name\": \"mesut\", \"skinCondition\" : 1, \"sleepLastNight\" : -12}";
 		mockMvc.perform(MockMvcRequestBuilders.post("/survey/save")
 				.content(surveyJson)
@@ -98,7 +98,7 @@ class SurveyControllerTest {
 
 	@Test
 	@DisplayName("Validation response: must be greater than or equal to 0")
-	public void testThatValidationMessageRequestWithSkinConditionExceedMin() throws Exception {
+	void testThatValidationMessageRequestWithSkinConditionExceedMin() throws Exception {
 		String surveyJson = "{\"name\": \"mesut\", \"skinCondition\" : -12, \"sleepLastNight\" : 1}";
 		mockMvc.perform(MockMvcRequestBuilders.post("/survey/save")
 				.content(surveyJson)
@@ -110,7 +110,7 @@ class SurveyControllerTest {
 
 	@Test
 	@DisplayName("Validation response: SkinCondition is mandatory")
-	public void testThatValidationMessageRequestWithOutSkinCondition() throws Exception {
+	void testThatValidationMessageRequestWithOutSkinCondition() throws Exception {
 		String surveyJson = "{\"name\": \"mesut\",  \"sleepLastNight\" : 1}";
 		mockMvc.perform(MockMvcRequestBuilders.post("/survey/save")
 				.content(surveyJson)
@@ -122,7 +122,7 @@ class SurveyControllerTest {
 
 	@Test
 	@DisplayName("Validation response: SleepLastNight is mandatory")
-	public void testThatValidationMessageRequestWithOutSleepLastNight() throws Exception {
+	void testThatValidationMessageRequestWithOutSleepLastNight() throws Exception {
 		String surveyJson = "{\"name\": \"mesut\", \"skinCondition\" : 2}";
 		mockMvc.perform(MockMvcRequestBuilders.post("/survey/save")
 				.content(surveyJson)
