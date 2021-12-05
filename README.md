@@ -20,6 +20,7 @@ java -jar target/survey-api-0.0.1-SNAPSHOT.jar
 
 # Test Api call
 
+* Successful request will return http status code 201 (created)
 
 ``` 
  curl -H "Content-Type: application/json" -X POST -d '{
@@ -27,4 +28,36 @@ java -jar target/survey-api-0.0.1-SNAPSHOT.jar
     "skinCondition": 10,
     "sleepLastNight": 1 
  }'  http://localhost:8080/survey/save
+``` 
+
+* Validation errors will return  http status 400 (Bad Request)
+
+``` 
+ curl -H "Content-Type: application/json" -X POST -d '{
+    "name": "Otto",
+    "skinCondition": 20,
+    "sleepLastNight": 1 
+ }'  http://localhost:8080/survey/save
+``` 
+response:
+``` 
+{
+    "field": "skinCondition",
+    "message": "must be less than or equal to 10"
+}
+``` 
+
+
+``` 
+ curl -H "Content-Type: application/json" -X POST -d '{
+    "skinCondition": 10,
+    "sleepLastNight": 1 
+ }'  http://localhost:8080/survey/save
+``` 
+response:
+``` 
+{
+    "field": "name",
+    "message": "Name is mandatory"
+}
 ``` 
